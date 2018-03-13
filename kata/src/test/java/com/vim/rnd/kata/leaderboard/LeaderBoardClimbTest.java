@@ -4,12 +4,6 @@ import com.vim.rnd.common.utils.TestDataUtil;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.core.io.ClassPathResource;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
 
@@ -24,34 +18,10 @@ public class LeaderBoardClimbTest {
     }
 
     @Test
-    public void climbingLeaderBoard() throws Exception {
+    public void climbingLeaderBoard_returnsCorrectRanks() throws Exception {
+        int[] expectedRanks = TestDataUtil.intArrayFromFile("fixtures/kata/leaderboard/output1.txt"); //= new int[] { 6, 4, 2, 1 };
+        int[] actualRanks = LeaderBoardClimb.climbingLeaderboard(scores, alice);
 
-        String scoresIn = TestDataUtil.stringFromFile("fixtures/kata/leaderboard/output1.txt");
-
-        //expected = "6 4 2 1";
-//        try {
-//            int[] arr = Arrays.stream(expected.split("\r\n"))
-//                    .map(String::trim).mapToInt(Integer::parseInt).toArray();
-//            System.out.println(Arrays.toString(arr));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-        //int[] arr = Arrays.stream(str.substring(1, str.length()-1).split(","))
-        //        .map(String::trim).mapToInt(Integer::parseInt).toArray();
-        //System.out.println(expected);
-        //String[] expStr = expected.split("\r\n");
-
-        //Stream powerOfTen = Stream.of(expStr);
-       // Integer[] array = powerOfTen.toArray(size -> new Integer[size]);
-
-
-        //Read more: http://javarevisited.blogspot.com/2017/01/3-ways-to-convert-java-8-stream-to-array.html#ixzz59V4QbRAY
-
-
-        int[] expectedScore = TestDataUtil.intArrayFromFile("fixtures/kata/leaderboard/output1.txt"); //= new int[] { 6, 4, 2, 1 };
-        int[] aliceScore = LeaderBoardClimb.climbingLeaderboard(scores, alice);
-
-        assertThat(aliceScore, Matchers.equalTo(expectedScore));
+        assertThat(actualRanks, Matchers.equalTo(expectedRanks));
     }
 }

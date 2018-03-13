@@ -24,4 +24,8 @@ public class TestDataUtil {
         }
         return intArray;
     }
+
+    public static int[][] intArrayOfRowsFromFile(String filename) throws NumberFormatException {
+        return null;
+    }
 }
