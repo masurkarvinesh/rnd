@@ -1,3 +1,4 @@
-include 'kata'
 include 'common'
+include 'kata'
+
 

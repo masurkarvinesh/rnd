@@ -2,26 +2,29 @@ package com.vim.rnd.kata.leaderboard;
 
 import com.vim.rnd.common.utils.TestDataUtil;
 import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.IOException;
+import java.nio.file.Files;
 
 import static org.junit.Assert.*;
 
 public class LeaderBoardClimbTest {
-    private int[] scores;
-    private int[] alice;
-
-    @Before
-    public void setUp() throws Exception {
-        scores = new int[] { 100, 100, 50, 40, 40, 20, 10 };
-        alice = new int[] { 5, 25, 50, 120 };
-    }
 
     @Test
     public void climbingLeaderBoard_returnsCorrectRanks() throws Exception {
-        int[] expectedRanks = TestDataUtil.intArrayFromFile("fixtures/kata/leaderboard/output1.txt"); //= new int[] { 6, 4, 2, 1 };
-        int[] actualRanks = LeaderBoardClimb.climbingLeaderboard(scores, alice);
+        String outputFile = stringFromFile("fixtures/kata/leaderboard/output1.txt");
+        int[] expectedRanks = TestDataUtil.intArrayFromFile(outputFile);
+        String inputFile = stringFromFile("fixtures/kata/leaderboard/input1.txt");
+        int[][] intArrayOfRows = TestDataUtil.intArrayOfRowsFromFile(inputFile);
+
+        int[] actualRanks = LeaderBoardClimb.climbingLeaderboard(intArrayOfRows[1], intArrayOfRows[3]);
 
         assertThat(actualRanks, Matchers.equalTo(expectedRanks));
+    }
+
+     private String stringFromFile(String filename) throws IOException {
+        return new String(Files.readAllBytes(new ClassPathResource(filename).getFile().toPath()));
     }
 }

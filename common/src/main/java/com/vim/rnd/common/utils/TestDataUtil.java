@@ -1,31 +1,39 @@
 package com.vim.rnd.common.utils;
 
-import org.springframework.core.io.ClassPathResource;
+import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Arrays;
 
 public class TestDataUtil {
 
-    public static String stringFromFile(String filename) throws IOException {
-        return new String(Files.readAllBytes(new ClassPathResource(filename).getFile().toPath()));
+    public static int[] intArrayFromFile (String stringFile) throws Exception {
+        //String intFile = stringFromFile(filename);
+        String separator = "\r\n";
+        return getIntArrayFromString(stringFile, separator);
     }
 
-    public static int[] intArrayFromFile (String filename) throws NumberFormatException {
+    public static int[][] intArrayOfRowsFromFile(String stringFile) throws Exception {
+        String[] intFile = StringUtils.split(stringFile, "\n");
+        int[][] intArrayOfRows = new int[intFile.length][intFile.length];
+        for(int i = 0; i < intFile.length; i++) {
+            int[] temp = getIntArrayFromString(intFile[i], " ");
+            intArrayOfRows[i] = temp;
+        }
+        return intArrayOfRows;
+    }
+
+    private static int[] getIntArrayFromString(String intFile, String separator) {
         int[] intArray = null;
         try {
-            String intFile = stringFromFile(filename);
-            intArray = Arrays.stream(intFile.split("\r\n"))
-                    .map(String::trim).mapToInt(Integer::parseInt).toArray();
+            intArray = Arrays
+                    .stream(intFile
+                            .split(separator))
+                    .map(String::trim)
+                    .mapToInt(Integer::parseInt).toArray();
             //System.out.println(Arrays.toString(intArray));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return intArray;
-    }
-
-    public static int[][] intArrayOfRowsFromFile(String filename) throws NumberFormatException {
-        return null;
     }
 }

@@ -2,6 +2,10 @@ package com.vim.rnd.common.utils;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.IOException;
+import java.nio.file.Files;
 
 import static org.junit.Assert.assertThat;
 
@@ -10,29 +14,35 @@ public class TestDataUtilTest {
     @Test
     public void stringFromFile_returnsStringCorrectly() throws Exception {
         String expected = "6\r\n4\r\n2\r\n1";
-        String actual = TestDataUtil.stringFromFile("fixtures/common/utils/testdatautil/intSingleColumnData.txt");
+        String actual = stringFromFile("fixtures/common/utils/testdatautil/intSingleColumnData.txt");
 
         assertThat(actual, Matchers.equalTo(expected));
     }
 
     @Test
-    public void intDataFromFile_ReturnsIntArrayCorrecty() {
+    public void intDataFromFile_ReturnsIntArrayCorrectly() throws Exception {
         int[] expected = new int[] { 6, 4, 2, 1 };
-        int[] actual = TestDataUtil.intArrayFromFile("fixtures/common/utils/testdatautil/intSingleColumnData.txt");
+        String stringFile = stringFromFile("fixtures/common/utils/testdatautil/intSingleColumnData.txt");
+        int[] actual = TestDataUtil.intArrayFromFile(stringFile);
 
         assertThat(actual, Matchers.equalTo(expected));
     }
 
     @Test
-    public void intRowDataFromFile_ReturnsRowsOfIntArrayCorrecty() {
+    public void intRowDataFromFile_ReturnsRowsOfIntArrayCorrectly() throws Exception {
         int[][] expected = new int[][] {
                 new int[] {7},
                 new int[] {100, 100, 50, 40, 40, 20, 10},
                 new int[] {4},
-                new int[] {5, 25, 50, 120}
+                new int[] {5, 25, 50, 120 }
         };
-        int[][] actual = TestDataUtil.intArrayOfRowsFromFile("fixtures/common/utils/testdatautil/intRowsOfStringData.txt");
+        String stringFile = stringFromFile("fixtures/common/utils/testdatautil/intRowsOfStringData.txt");
+        int[][] actual = TestDataUtil.intArrayOfRowsFromFile(stringFile);
 
         assertThat(actual, Matchers.equalTo(expected));
+    }
+
+    private String stringFromFile(String filename) throws IOException {
+        return new String(Files.readAllBytes(new ClassPathResource(filename).getFile().toPath()));
     }
 }
