@@ -13,10 +13,13 @@ public class TestDataUtilTest {
 
     @Test
     public void stringFromFile_returnsStringCorrectly() throws Exception {
-        String expected = "6\r\n4\r\n2\r\n1";
+        StringBuffer expected = new StringBuffer("6").append(TestDataUtil.DATA_DELMITER)
+            .append("4").append(TestDataUtil.DATA_DELMITER)
+            .append("2").append(TestDataUtil.DATA_DELMITER)
+            .append("1");
         String actual = stringFromFile("fixtures/common/utils/testdatautil/intSingleColumnData.txt");
 
-        assertThat(actual, Matchers.equalTo(expected));
+        assertThat(actual, Matchers.equalTo(expected.toString()));
     }
 
     @Test

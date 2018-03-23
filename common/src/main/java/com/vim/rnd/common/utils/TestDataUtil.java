@@ -6,10 +6,11 @@ import java.util.Arrays;
 
 public class TestDataUtil {
 
+    public static String DATA_DELMITER = "\r\n";
+
     public static int[] intArrayFromFile (String stringFile) throws Exception {
         //String intFile = stringFromFile(filename);
-        String separator = "\r\n";
-        return getIntArrayFromString(stringFile, separator);
+        return getIntArrayFromString(stringFile, DATA_DELMITER);
     }
 
     public static int[][] intArrayOfRowsFromFile(String stringFile) throws Exception {
