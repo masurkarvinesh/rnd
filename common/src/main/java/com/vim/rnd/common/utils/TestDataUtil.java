@@ -6,15 +6,14 @@ import java.util.Arrays;
 
 public class TestDataUtil {
 
-    public static String DATA_DELMITER = "\r\n";
+    public static String DATA_LINE_DELIMITER = System.getProperty("line.separator").toString();
 
     public static int[] intArrayFromFile (String stringFile) throws Exception {
-        //String intFile = stringFromFile(filename);
-        return getIntArrayFromString(stringFile, DATA_DELMITER);
+        return getIntArrayFromString(stringFile, DATA_LINE_DELIMITER);
     }
 
     public static int[][] intArrayOfRowsFromFile(String stringFile) throws Exception {
-        String[] intFile = StringUtils.split(stringFile, "\n");
+        String[] intFile = StringUtils.split(stringFile, DATA_LINE_DELIMITER);
         int[][] intArrayOfRows = new int[intFile.length][intFile.length];
         for(int i = 0; i < intFile.length; i++) {
             int[] temp = getIntArrayFromString(intFile[i], " ");

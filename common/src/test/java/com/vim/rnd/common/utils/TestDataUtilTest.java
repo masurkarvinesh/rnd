@@ -13,9 +13,9 @@ public class TestDataUtilTest {
 
     @Test
     public void stringFromFile_returnsStringCorrectly() throws Exception {
-        StringBuffer expected = new StringBuffer("6").append(TestDataUtil.DATA_DELMITER)
-            .append("4").append(TestDataUtil.DATA_DELMITER)
-            .append("2").append(TestDataUtil.DATA_DELMITER)
+        StringBuffer expected = new StringBuffer("6").append(TestDataUtil.DATA_LINE_DELIMITER)
+            .append("4").append(TestDataUtil.DATA_LINE_DELIMITER)
+            .append("2").append(TestDataUtil.DATA_LINE_DELIMITER)
             .append("1");
         String actual = stringFromFile("fixtures/common/utils/testdatautil/intSingleColumnData.txt");
 
