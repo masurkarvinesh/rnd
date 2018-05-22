@@ -14,9 +14,9 @@ public class LeaderBoardClimbTest {
 
     @Test
     public void climbingLeaderBoard_returnsCorrectRanks() throws Exception {
-        String outputFile = stringFromFile("fixtures/kata/leaderboard/output1.txt");
+        String outputFile = stringFromFile("fixtures/kata/leaderboard/output2.txt");
         int[] expectedRanks = TestDataUtil.intArrayFromFile(outputFile);
-        String inputFile = stringFromFile("fixtures/kata/leaderboard/input1.txt");
+        String inputFile = stringFromFile("fixtures/kata/leaderboard/input2.txt");
         int[][] intArrayOfRows = TestDataUtil.intArrayOfRowsFromFile(inputFile);
 
         int[] actualRanks = LeaderBoardClimb.climbingLeaderboard(intArrayOfRows[1], intArrayOfRows[3]);
