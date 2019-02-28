@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vim.rnd.common.utils.TestDataUtilTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-06-13T02:22:35" hostname="Masurkars" time="0.078">
+  <properties/>
+  <testcase name="stringFromFile_returnsStringCorrectly" classname="com.vim.rnd.common.utils.TestDataUtilTest" time="0.012"/>
+  <testcase name="intRowDataFromFile_ReturnsRowsOfIntArrayCorrectly" classname="com.vim.rnd.common.utils.TestDataUtilTest" time="0.065"/>
+  <testcase name="intDataFromFile_ReturnsIntArrayCorrectly" classname="com.vim.rnd.common.utils.TestDataUtilTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

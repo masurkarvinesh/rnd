@@ -10,6 +10,14 @@ buildscript {
     }
 }
 
+sourceSets {
+    test {
+        java {
+            srcDirs = ["test"]
+        }
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -23,10 +31,10 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     compile project(':common')
     compile('org.springframework.boot:spring-boot-starter')
 
+    testCompile "junit:junit:4.11"
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

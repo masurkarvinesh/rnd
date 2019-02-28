@@ -1,12 +1,12 @@
-package com.vim.rnd;
+package com.vim.rnd.webapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RndApplication {
+public class WebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RndApplication.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 }
